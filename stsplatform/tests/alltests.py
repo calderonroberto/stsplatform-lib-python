@@ -5,7 +5,7 @@ import string
 import json
 import stsplatform.client as sts
 
-print ">> YOU MUST CONFIGURE YOUR KEY AND PASSWORD IN ALLTESTS.PY LINE 10"
+print ">>>>> YOU MUST CONFIGURE YOUR KEY AND PASSWORD IN tests/alltests.py LINE 10 for testing this library"
 
 KEY_ID = ''
 KEY_PASSWORD = ''
