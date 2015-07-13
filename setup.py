@@ -13,7 +13,7 @@ if __name__ == "__main__":
         description="Use the SenseTecnic Systems Platform API",
         author="Roberto Calderon",
         author_email="rcalderon@sensetecnic.com",
-        url="http://github.com/SenseTecnic/stsplatform-lib-python",
+        url="https://github.com/SenseTecnic/stsplatform-lib-python",
         long_description=textwrap.dedent("""\
             Quick Tutorial
             ==============
