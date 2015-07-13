@@ -120,13 +120,6 @@ print fs.get().data
 f = c.Fields(s, "value")
 print f.get().data
 ```
-#### Tags
-
-```
-c = sts.Client(CONF)
-t = sts.Tags(c)
-print t.get({"text":"weather"}).data
-```
 
 #### Organizations
 
@@ -134,20 +127,4 @@ print t.get({"text":"weather"}).data
 c = sts.Client(CONF)
 o = sts.Orgs(c, "sensetecnic")
 print orgs.get().data
-```
-
-#### News
-
-```
-c = sts.Client(CONF)
-n = sts.News(c)
-print news.get().data
-```
-
-#### Statistics
-
-```
-c = sts.Client(CONF)
-stats = sts.Stats(c)
-print stats.get().data
 ```
