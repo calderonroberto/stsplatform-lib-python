@@ -2,7 +2,7 @@
 
 # To run this example from the root directory: python -m examples/simple_example
 
-import stsplatform as sts
+import stsplatform.client as sts
 
 SENSOR_NAME = 'mike.yvr-arrive'
 
