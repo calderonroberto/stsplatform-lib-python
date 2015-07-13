@@ -1,0 +1,9 @@
+stsplatform/__init__.pyc
+stsplatform/client.pyc
+stsplatform/tests/__init__.pyc
+stsplatform/tests/alltests.pyc
+stsplatform/examples/simple_example.pyc
+stsplatform/examples/full_example.pyc
+stsplatform.egg-info
+build
+dist
