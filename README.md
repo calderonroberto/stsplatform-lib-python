@@ -7,6 +7,14 @@ This library allows developers to use the STS Platform (including the FREE versi
 
 * Requests >= 2.2.1
 
+# Installing the library
+
+You can install using pip with:
+
+```
+pip install stsplatform
+```
+
 # Getting Started
 
 Import the library:
