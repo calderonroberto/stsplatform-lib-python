@@ -27,7 +27,7 @@ class RequestHandler (object):
         """
         if 'url' in config:
             if re.match("http://",config["url"]) is None:
-                raise WotkitError('Malformed URL string')
+                raise STSPlatformError('Malformed URL string')
             else:
                 self.url = config['url']
 
