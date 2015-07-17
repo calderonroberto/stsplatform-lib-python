@@ -136,3 +136,24 @@ c = sts.Client(CONF)
 o = sts.Orgs(c, "sensetecnic")
 print orgs.get().data
 ```
+
+# Development
+
+Clone the latest stable (Master) repository:
+
+```
+git clone https://github.com/SenseTecnic/stsplatform-lib-python
+cd stsplatform-lib-python
+```
+
+Run the tests:
+
+```
+python setup.py test
+```
+
+Install in system for development (creates a link to your project)
+
+```
+python setup.py develop
+```
