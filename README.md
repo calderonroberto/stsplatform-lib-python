@@ -40,7 +40,19 @@ print d.get({'beforeE':1}).data
 ```
 # Using the library
 
-All methods rely on the Client class:
+All methods rely on the Client Class. The parameter CONF is not required, but allows you to configure your client to specify your credentials and url of the STS Platform instance you want to access. By default the client will use the community edition of the STS Platform (WoTKit):
+
+A common configuration object is:
+
+```
+CONF = {
+  "url":"http://wotkit.sensetecnic.com/api",
+  "auth":{"key_id":KEY_ID, "key_password":KEY_PASSWORD},  
+}
+```
+
+You can then instantiate your client like this:
+
 ```
 c = sts.Client(CONF)
 ```
@@ -134,7 +146,7 @@ print f.get().data
 ```
 c = sts.Client(CONF)
 o = sts.Orgs(c, "sensetecnic")
-print orgs.get().data
+print o.get().data
 ```
 
 # Development
