@@ -4,7 +4,7 @@ import subprocess
 import shutil
 import os.path
 
-version = "0.0.1"
+version = "0.1.0"
 
 if __name__ == "__main__":
     setuptools.setup(
