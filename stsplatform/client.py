@@ -17,9 +17,6 @@ class RequestHandler (object):
         self.url = "http://wotkit.sensetecnic.com/api"
         self.auth = None
 
-    def set_handler(self,handler):
-        self.__successor = handler
-
     def set_config(self,config):
         """
         Override the default configuration of the client.
