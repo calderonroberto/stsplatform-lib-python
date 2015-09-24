@@ -7,3 +7,7 @@ stsplatform/examples/full_example.pyc
 stsplatform.egg-info
 build
 dist
+stsplatform/.coverage
+stsplatform/tests/configuration.py
+stsplatform/tests/configuration.pyc
+.coverage

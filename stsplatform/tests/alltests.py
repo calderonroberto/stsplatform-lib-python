@@ -4,20 +4,24 @@ import random
 import string
 import json
 import stsplatform.client as sts
+import configuration
+import sys
 
-print ">>>>> YOU MUST CONFIGURE YOUR KEY AND PASSWORD IN tests/alltests.py LINE 10 for testing this library"
-
-KEY_ID = ''
-KEY_PASSWORD = ''
-TEST_SENSOR = 'calderonroberto.data' #a previously created sensor for tests
+print "\n\n"
+print ">>>>> YOU MUST CONFIGURE YOUR KEY AND PASSWORD IN configuration.py to run these tests"
+print ">>>>> Add the file stsplatform/tests/configuration.py with the following:"
+print " KEY_ID = '' "
+print " KEY_PASSWORD = '' "
+print " TEST_SENSOR = 'calderonroberto.data' #a previously created sensor for tests "
+print "\n\n"
 
 class TestSTSPlatform(unittest.TestCase):
 
     def setUp(self):
-        self.config = {"url":"http://wotkit.sensetecnic.com/api","auth":{"key_id":KEY_ID, "key_password":KEY_PASSWORD}}
+        self.config = {"url":"http://wotkit.sensetecnic.com/api","auth":{"key_id":configuration.KEY_ID, "key_password":configuration.KEY_PASSWORD}}
         self.config_url = {"url":"http://wotkit.sensetecnic.com/api/v1"}
-        self.config_auth_username = {"auth":{"username":KEY_ID, "password":KEY_PASSWORD}}
-        self.config_auth_key = {"auth":{"key_id":KEY_ID, "key_password":KEY_PASSWORD}}
+        self.config_auth_username = {"auth":{"username":configuration.KEY_ID, "password":configuration.KEY_PASSWORD}}
+        self.config_auth_key = {"auth":{"key_id":configuration.KEY_ID, "key_password":configuration.KEY_PASSWORD}}
 
     def tearDown(self):
         pass
@@ -34,12 +38,12 @@ class TestSTSPlatform(unittest.TestCase):
     def test_should_initialize_with_good_config(self):
         w = sts.Client(self.config)
         self.assertEqual(w.url, "http://wotkit.sensetecnic.com/api")
-        self.assertEqual(w.auth, {'key_id':KEY_ID,'key_password':KEY_PASSWORD})
+        self.assertEqual(w.auth, {'key_id':configuration.KEY_ID,'key_password':configuration.KEY_PASSWORD})
         w = sts.Client(self.config_url)
         self.assertEqual(w.url, "http://wotkit.sensetecnic.com/api/v1")
         self.assertEqual(w.auth, None)
         w = sts.Client(self.config_auth_username)
-        self.assertEqual(w.auth, {'key_id':KEY_ID,'key_password':KEY_PASSWORD})
+        self.assertEqual(w.auth, {'key_id':configuration.KEY_ID,'key_password':configuration.KEY_PASSWORD})
 
     def test_sensors(self):
         sensorname = ''.join(random.SystemRandom().choice(string.ascii_lowercase) for _ in range(7))
@@ -83,7 +87,7 @@ class TestSTSPlatform(unittest.TestCase):
         randomvalue= random.randrange(0, 101, 2)
 
         w = sts.Client(self.config)
-        s = sts.Sensors(w, TEST_SENSOR)
+        s = sts.Sensors(w, configuration.TEST_SENSOR)
         d = sts.Data(s)
 
         #has methods
@@ -126,7 +130,7 @@ class TestSTSPlatform(unittest.TestCase):
         }
 
         w = sts.Client(self.config)
-        s = sts.Sensors(w, TEST_SENSOR)
+        s = sts.Sensors(w, configuration.TEST_SENSOR)
         f = sts.Fields(s)
 
         #can be retrieved
@@ -182,6 +186,19 @@ class TestSTSPlatform(unittest.TestCase):
         #can be queried
         r = s.get()
         self.assertEquals(r.code,200)
+
+    def test_catch_authentication_changed_none(self):
+        w = sts.Client(self.config)
+        w.auth = None
+        s = sts.Sensors(w, configuration.TEST_SENSOR)
+        r = s.get()
+        self.assertEquals(r.code,200)
+
+    def test_wrongly_formatted_payload(self):
+        #TODO: test with httpmock
+        pass
+
+
 
 if __name__ == '__main__':
     unittest.main()
