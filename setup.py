@@ -46,7 +46,8 @@ if __name__ == "__main__":
             "Topic :: Software Development",
         ],
         install_requires=[
-          'requests'
+          'requests',
+          'httmock'
         ],
         test_suite="stsplatform.tests",
     )

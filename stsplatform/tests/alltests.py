@@ -6,6 +6,7 @@ import json
 import stsplatform.client as sts
 import configuration
 import sys
+from httmock import all_requests, HTTMock
 
 print "\n\n"
 print ">>>>> YOU MUST CONFIGURE YOUR KEY AND PASSWORD IN configuration.py to run these tests"
@@ -194,9 +195,30 @@ class TestSTSPlatform(unittest.TestCase):
         r = s.get()
         self.assertEquals(r.code,200)
 
-    def test_wrongly_formatted_payload(self):
-        #TODO: test with httpmock
-        pass
+    def test_non_json_response (self):
+        with HTTMock(no_json_response_content):
+            w = sts.Client(self.config)
+            s = sts.Stats(w)
+            r = s.get()
+            self.assertEquals(r.data, None)
+
+    def test_bad_payload (self):
+        with HTTMock(response_content):
+            w = sts.Client(self.config)
+            s = sts.Sensors(w, configuration.TEST_SENSOR)
+            d = sts.Data(s)
+            self.assertRaises(Exception,d.post, {0x12AF} ) #A binary literal is not serializable
+
+@all_requests
+def no_json_response_content(url, request):
+    return {'status_code': 600,
+            'content': '{Wrong For'}
+
+@all_requests
+def response_content(url, request):
+    return {'status_code': 200,
+            'content': ''}
+
 
 if __name__ == '__main__':
     unittest.main()
