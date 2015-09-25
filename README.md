@@ -169,3 +169,10 @@ Install in system for development (creates a link to your project)
 ```
 python setup.py develop
 ```
+
+Don't forget to check your test test coverage before publishing
+
+```
+python -m coverage run setup.py test
+python -m coverage report -m
+```

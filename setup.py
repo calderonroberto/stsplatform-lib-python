@@ -47,7 +47,8 @@ if __name__ == "__main__":
         ],
         install_requires=[
           'requests',
-          'httmock'
+          'httmock',
+          'coverage'
         ],
         test_suite="stsplatform.tests",
     )
