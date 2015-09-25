@@ -198,7 +198,5 @@ class TestSTSPlatform(unittest.TestCase):
         #TODO: test with httpmock
         pass
 
-
-
 if __name__ == '__main__':
     unittest.main()
